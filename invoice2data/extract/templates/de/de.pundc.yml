@@ -1,0 +1,17 @@
+issuer: Peek & Cloppenburg KG
+fields:
+  amount: EUR\s+(\d+.?[\.,].?\d+)
+  date: \s+(\d+[\.,]\d+[\.,]\d{4})
+  invoice_number: \s+(\d{14,})
+lines:
+  start: '\s+(\d{14,})'
+  end: 'EUR\s+(\d+.?[\.,].?\d+)'
+  first_line: '^\S\S\s(?P<artnr>\S+\s\S*\s\S*)\s\s+'
+  line: '^\s{2,5}(?P<desc>\S+)'
+  last_line: '^\s{10,}.\s+(?P<sumprice>\S?\d+.?[\.,].?\d+)$'
+keywords:
+- 'Cloppenburg'
+- 'Peek'
+options:
+  currency: EUR
+  decimal_separator: ","

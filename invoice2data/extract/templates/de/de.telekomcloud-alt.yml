@@ -1,0 +1,19 @@
+issuer: TelekomCLOUD
+fields:
+  amount: Endbetrag\s+(\d+[\.,]\d+)
+  amount_untaxed: Nettobetrag\s+(\d+[\.,]\d+)
+  date: Rechnungsdatum.\s+(\d+\.\d+\.\d{4})
+  invoice_number: Rechnungsnummer.\s+(\d{7,})
+lines:
+  start: 'Bezeichnung'
+  end: 'Summe Nettobetrag'
+  first_line: '\d+\s+(?P<artnr>\S+)\s+(?P<sumprice>\d+[\.,]\d+)$'
+  line: '^\s{12,}(?P<desc>[^_]{20,})'
+  types:
+      sumprice: float
+keywords:
+- TelekomCLOUD
+- Transaktionsnr
+options:
+  currency: EUR
+  decimal_separator: ","

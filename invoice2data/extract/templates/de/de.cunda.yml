@@ -1,0 +1,17 @@
+issuer: C&A
+fields:
+  amount: EUR\s+(\d+[\.,]\d+)
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: \s+(\d{18,})
+lines:
+  start: 'EUR'
+  end: 'EUR\s+\d+[\.,]\d+'
+  first_line: '^\s?(?P<desc>\S+\s\S*\s\S*)\s+.+\s+(?P<sumprice>\S?\d+.?[\.,]\d+)'
+  line: '(?P<addinfo>\d+\s+.\s+\d+)'
+  types:
+      sumprice: float
+keywords:
+- 'DE121280555'
+options:
+  currency: EUR
+  decimal_separator: ","

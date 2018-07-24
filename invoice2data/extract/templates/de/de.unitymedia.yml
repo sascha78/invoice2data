@@ -1,0 +1,21 @@
+issuer: Unitymedia BW
+fields:
+  amount: Rechnungsbetrag\s+(\d+[\.,]\d+)
+  amount_untaxed: Nettobetrag\s+(\d+[\.,]\d+)
+  date: Datum.+\s+(\d+\.\d+\.\d{4})
+  invoice_number: Rechnungsnummer.+\s+(\d+.\d+.\d+)
+lines:
+  start: 'Leistung.+'
+  end: 'Nettobetrag'
+  line: '^(?P<desc>.+?)\s\s+((?P<addinfo>.+?)|\s)\s\s+((?P<qty>\d+)|\s)\s+\d+.\s+.+(?P<sumprice_netto>\d+[\.,]\d+)$'
+  types:
+      sumprice_netto: float
+addlines:
+  add_start: 'ANLAGE ZUR .*'
+  add_end: 'Bitte beachten'
+  add_line: '^(?P<text>.+?)\s\s+(?P<addinfo>.+?)\s\s+(?P<qty>\d+)\s\s+.+\s\s+(?P<netto_price>.+)'
+keywords:
+- 'DE 251 338 951'
+options:
+  currency: EUR
+  decimal_separator: ","

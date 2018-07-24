@@ -1,0 +1,22 @@
+issuer: InterNetX GmbH
+fields:
+  amount: Rechnungsbetrag\s+(\d+[\.,]\d+)
+  amount_untaxed: Nettobetrag\s+(\d+[\.,]\d+)
+  date: \s+\d{8,}\s+(\d+\.\d+\.\d{4})
+  customer_no: \s+(\d{8,})\s+\d+\.\d+\.\d{4}
+  invoice_number: Rechnungsnummer\s+(\d{5,})
+lines:
+  start: 'Positionen'
+  end: 'Nettobetrag'
+  line: '(?P<desc>.+)\s\s+(?P<sumprice>\d+[\.,]\d+)'
+  types:
+      sumprice: float
+addlines:
+  add_start: 'Vorgang'
+  add_end: 'Posten'
+  add_line: '\d+\s+(?P<text>.+)\s\s+(?P<vorgang>.+)\s\s+.+\s\s+.+'
+keywords:
+- DE199405147
+options:
+  currency: EUR
+  decimal_separator: ","

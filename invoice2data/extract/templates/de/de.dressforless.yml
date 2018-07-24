@@ -1,0 +1,14 @@
+issuer: dress-for-less GmbH
+fields:
+  amount: me\s+(\d+.?[\.,].?\d+)
+  date: gsdatum\s+(\d+[\.,]\d+[\.,]\d{4})
+  invoice_number: gs.Nr.+\s+(\d{5,})
+lines:
+  start: 'Unser Preis'
+  end: 'Rechnungssumme'
+  line: '\S+\s\s+(?P<artnr>\S+)\s\s+(?P<qty>\d+)\s\s+(?P<desc>.+)\s\s+\S+.?[\.,].?\S+\s.\s+\S+.?[\.,].?\S+\s.\s+(?P<sumprice>\S+.?[\.,].?\S+\s.)'
+keywords:
+- 'DE257105344'
+options:
+  currency: EUR
+  decimal_separator: ","

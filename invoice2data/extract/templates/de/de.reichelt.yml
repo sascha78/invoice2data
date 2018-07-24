@@ -1,0 +1,20 @@
+issuer: reichelt elektronik GmbH & Co. KG
+fields:
+  amount: \d+[\.,]\d+\s+\d+[\.,]\d+.\s+\d+[\.,]\d+\s+\d+[\.,]\d+\s+\d+[\.,]\d+\s+(\d+[\.,]\d+)
+  amount_untaxed: \d+[\.,]\d+\s+\d+[\.,]\d+.\s+\d+[\.,]\d+\s+(\d+[\.,]\d+)\s+\d+[\.,]\d+\s+\d+[\.,]\d+
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: voice.+(\d{7,})
+lines:
+  start: 'Quant'
+  end: 'Warenw'
+  # line: '(?P<qty>\d+)\s\s+(?P<artnr>.+?)\s\s+(P<desc>.+)\s\s+.+\s+(?P<sumprice>\d+[\.,]\d+)$'
+  # line: '(?P<qty>\d+)\s\s+(?P<artnr>.+?)\s\s+(P<desc>\w.+?)\s\s+'
+  line: '(?P<qty>\d+)\s\s+(?P<artnr>.+?)\s\s+(?P<desc>.+?)\s\s+.+(?P<sumprice>\d+[\.,]\d+)'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- reichelt
+options:
+  currency: EUR
+  decimal_separator: ","

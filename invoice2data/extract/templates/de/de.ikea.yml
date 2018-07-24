@@ -1,0 +1,21 @@
+issuer: IKEA Deutschland GmbH & Co. KG
+fields:
+  amount: Gesamt.*\s+(\d+[\.,]\d+)
+  amount_untaxed: Gesamt.*\s+(\d+[\.,]\d+)
+  date: (\d+[\.,]\d+[\.,]\d{2})
+  invoice_number: (\d{14,})
+lines:
+  start: 'EUR'
+  end: 'Gesamt'
+  line: 'Art.+\s(?P<artnr>\w{5,})\s+'
+  # line: '(?P<qty>\d+)\s+'
+  last_line: '^(?P<desc>\w+\s\w+\s?\w{0,}).*\s\s+(?P<sumprice>\d+[\.,]\d+)'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- "IKEA"
+- "ldorf"
+options:
+  currency: EUR
+  decimal_separator: ","

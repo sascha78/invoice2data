@@ -1,0 +1,19 @@
+issuer: Edeka
+fields:
+  amount: TOTAL\s+(\d+[\.,]\d+)
+  amount_tax: \s{5,}\d+[\.,]\d+\s+\d+[\.,]\d+\s+(\d+[\.,]\d+)
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: \s+(\d{14,})\s+
+lines:
+  start: 'MARKT'
+  end: 'TOTAL'
+  first_line: '^\s?(?P<desc>\S+\s\S*\s\S*)\s+.+\s+((?P<sumprice>\S?\d+.?[\.,]\d+)|\s+)'
+  line: '\s+kg\s+EUR'
+  last_line: '\s+(?P<sumprice>\d+.?[\.,]\d+)$'
+  types:
+      sumprice: float
+keywords:
+- 'DE-159637999'
+options:
+  currency: EUR
+  decimal_separator: ","

@@ -1,0 +1,16 @@
+issuer: Karstadt Warenhaus
+fields:
+  amount: EUR\s+(\d+.?[\.,].?\d+)
+  date: (\d+.?[\.,].?\d+.?[\.,].?\d{4})
+  invoice_number: \s+(\d{20,})
+lines:
+  start: 'EUR'
+  end: 'zahlen.+EUR'
+  first_line: '^\d.?\.\s+(?P<desc>\S+\s.+)'
+  line: '(?P<artnr>\d{12,})'
+  last_line: '^.+\s{8,}(?P<sumprice>\S?\d+.?[\.,].?\d+)\s.$'
+keywords:
+- 'KARSTADT'
+options:
+  currency: EUR
+  decimal_separator: ","

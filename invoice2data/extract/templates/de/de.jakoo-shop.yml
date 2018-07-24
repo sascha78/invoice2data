@@ -1,0 +1,22 @@
+issuer: JAKO-O Family Store GmbH & Co.KG
+fields:
+  amount: Gesamt\s+.\s+(\d+[\.,]\d+)
+  amount_untaxed: Netto.+\s+(\d+[\.,]\d+)
+  date: :\s+(\d+\.\d+\.\d{4})
+  invoice_number: Transaktion\.\s+(\d{10})
+lines:
+  start: 'Artikel'
+  end: 'Gesamt'
+  first_line: '(?P<artnr>\d+.+)\s+(?P<qty>\d+)\s+(?P<price>\d+[\.,]\d+)\s+(?P<sumprice>\d+[\.,]\d+)'
+  line: '^\s*(?P<desc>.+)\s*$'
+  last_line: 'rabatt\s+\d+.+(?P<rabattsum>-\d+[\.,]\d+)'
+  types:
+      qty: float
+      price: float
+      sumprice: float
+      rabattsum: float
+keywords:
+- DE269707609
+options:
+  currency: EUR
+  decimal_separator: ","

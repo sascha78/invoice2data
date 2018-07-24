@@ -1,0 +1,15 @@
+issuer: LIDL
+fields:
+  amount: Summe\s+\d+.?[\.,].?\d+\s+\d+.?[\.,].?\d+\s+(\d+.?[\.,].?\d+)
+  date: \d+/\d+\s+(\d+[\.,]\d+[\.,]\d{2})
+  invoice_number: (\S+)\s+\S+/\S+\s+\d+[\.,]\d+[\.,]\d{2}
+lines:
+  start: 'EUR'
+  end: 'zahlen'
+  first_line: '^\s?(?P<desc>\S+\s\S*\s\S*)(\s+(?P<sumprice>\S?\d+.?[\.,].?\d+)\s+\S+|$)'
+  line: '^\s+(?P<qty>\S+)\s+\S+.+\d+.?[\.,].?\d+(.+(?P<sumprice>\S?\d+.?[\.,].?\d+).+|\s*$)'
+keywords:
+- 'E813389176'
+options:
+  currency: EUR
+  decimal_separator: ","

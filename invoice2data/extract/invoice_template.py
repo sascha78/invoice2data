@@ -12,6 +12,7 @@ from unidecode import unidecode
 import logging as logger
 from collections import OrderedDict
 from .plugins import lines
+from .plugins import addlines
 
 OPTIONS_DEFAULT = {
     'remove_whitespace': False,
@@ -25,7 +26,8 @@ OPTIONS_DEFAULT = {
 }
 
 PLUGIN_MAPPING = {
-    'lines': lines
+    'lines': lines,
+    'addlines': addlines,
 }
 
 class InvoiceTemplate(OrderedDict):
@@ -98,10 +100,8 @@ class InvoiceTemplate(OrderedDict):
             return True
 
     def parse_number(self, value):
-        assert value.count(self.options['decimal_separator']) < 2,\
-            'Decimal separator cannot be present several times'
         # replace decimal separator by a |
-        amount_pipe = value.replace(self.options['decimal_separator'], '|')
+        amount_pipe = re.sub(r'(.*)[\.,](\d\d)', r'\1|\2', value.rstrip())
         # remove all possible thousands separators
         amount_pipe_no_thousand_sep = re.sub(
             '[.,\s]', '', amount_pipe)

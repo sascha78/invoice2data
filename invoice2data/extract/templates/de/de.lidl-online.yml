@@ -1,0 +1,15 @@
+issuer: lidl.de
+fields:
+  amount: me\s+(\d+.?[\.,].?\d+)
+  date: gsdatum.\s+(\d+[\.,]\d+[\.,]\d{4})
+  invoice_number: gs.Nr.+\s+(\d{7,})
+lines:
+  start: 'Artikelbez'
+  end: 'Summe'
+  first_line: '(?P<desc>.+)\s\s+\S+.+\s+(?P<qty>\d+)\s\s+\d+.?[\.,].?\d+\s+(?P<sumprice>\d+.?[\.,].?\d+)'
+  line: '(?P<addinfo>\S+\s?\S*\s?\S*)\s*$'
+keywords:
+- 'HRA 72146'
+options:
+  currency: EUR
+  decimal_separator: ","

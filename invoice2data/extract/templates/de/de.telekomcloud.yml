@@ -1,0 +1,18 @@
+issuer: TelekomCLOUD
+fields:
+  amount: Endbetrag\s+(\d+[\.,]\d+)
+  amount_untaxed: Nettobetrag\s+(\d+[\.,]\d+)
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: (\d{7,}).+\s+\d+\.\d+\.\d{4}
+lines:
+  start: 'Artikelnummer'
+  end: 'MwSt'
+  first_line: '\d+\s+(?P<artnr>\S+)\s+(?P<sumprice>\d+[\.,]\d+)$'
+  line: '^\s{10,}(?P<desc>[^_]{20,})'
+  types:
+      sumprice: float
+keywords:
+- TelekomCLOUD
+options:
+  currency: EUR
+  decimal_separator: ","

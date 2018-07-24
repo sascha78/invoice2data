@@ -1,0 +1,20 @@
+issuer: mobilcom-debitel GmbH
+fields:
+  amount: Rechnungsbetrag.gesamt\s+(\d+[\.,]\d+)
+  amount_untaxed: Rechnungsbetrag.netto\s+(\d+[\.,]\d+)
+  date: Rechnungsdatum.+\s+(\d+\.\d+\.\d{4})
+  invoice_number: Rechnungsnr.+\s+(.\d+)
+  contract_number: Vertragsnummer.+\s+(\d+)
+  customer_number: Kundennummer.+\s+(\d+)
+  mobile_nr: Mobilfunk.Rufnummer.\s+(\d+.{,3}\d+) 
+lines:
+  start: 'Menge Details'
+  end: 'Nettobetrag'
+  line: '^\s+(?P<qty>\d+)\s+(?P<desc>.+?)\s\s+((?P<addinfo>.+?)|\s)\s\s+(?P<sumprice_netto>.?\d+[\.,]\d+)'
+  types:
+      sumprice_netto: float
+keywords:
+- 'DE 194 910 634'
+options:
+  currency: EUR
+  decimal_separator: ","

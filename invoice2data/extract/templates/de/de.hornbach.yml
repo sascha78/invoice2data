@@ -1,0 +1,20 @@
+issuer: Hornbach Baumarkt AG
+fields:
+  amount: Summe.*EUR.*\s+(\d+[\.,]\d+)
+  amount_untaxed: \d+[\.,]\d+\s\s+\d+[\.,]\d+\s\s+(\d+[\.,]\d+)
+  date: (\d+\.\d+\.\d{2})
+  invoice_number: BNr\s(\d{4,})
+lines:
+  start: 'Steuernu'
+  end: 'Summe'
+  first_line: 'EAN\s+(?P<artnr>\w+)'
+  line: '\s\s+(?P<qty>\d+)\s+'
+  last_line: '^(?P<desc>\w+.+)\s\s+.*(?P<sumprice>\d+[\.,]\d+)'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- "Hornbach Bau"
+options:
+  currency: EUR
+  decimal_separator: ","

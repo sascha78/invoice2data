@@ -1,0 +1,20 @@
+issuer: 1blu AG
+fields:
+  amount: Gesamtsumme Brutto.+\s\s+(\d+[\.,]\d+)
+  amount_untaxed: Netto in EUR.+\s+(\d+[\.,]\d+)
+  date: Rechnungsdatum.\s+(\d+\.\d+\.\d{4})
+  customer_no: Kunden.Nr.\s+(\d{8,})
+  contract_no: Vertrag.Nr.+\s+(\d{4,})
+  invoice_number: Rechnungs.Nr.\s+(\d{5,})
+lines:
+  start: 'Beschreibung.+'
+  end: 'Zwischensumme'
+  first_line: '\s+\d+\s+(?P<artnr>\S+)\s\s+(?P<qty>\d+).+\s+(?P<sumprice>\d+[\.,]\d+)$'
+  line: '^\s{6,}(?P<desc>.+)'
+  types:
+      sumprice: float
+keywords:
+- DE814559097
+options:
+  currency: EUR
+  decimal_separator: ","

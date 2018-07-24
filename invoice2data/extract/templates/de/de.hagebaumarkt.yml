@@ -1,0 +1,21 @@
+issuer: Hagebaumarkt Hornung GmbH & Co. KG
+fields:
+  amount: .e\s+(\d+[\.,]\d+)
+  amount_untaxed_7: 7.0\s+(\d+[\.,]\d+)
+  amount_untaxed_19: 19.0\s+(\d+[\.,]\d+)
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: :\s+(\d{3}\s.{5,}\s\d{3})
+lines:
+  start: 'Pre'
+  end: 'Karte|Bar'
+  first_line: '(?P<artnr>[^\s]{7,})\s+(?P<desc>.+)\s+(?P<sumprice>\d+[\.,]\d+)'
+  line: '(?P<qty>\d+),000'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- DE143503212
+- baumarkt
+options:
+  currency: EUR
+  decimal_separator: ","

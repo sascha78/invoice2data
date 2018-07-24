@@ -1,0 +1,15 @@
+issuer: REWE
+fields:
+  amount: Geg.+\s+EUR\s+(\d+[\.,]\d+)
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: Bon-Nr.+:(\d+)
+lines:
+  start: 'EUR'
+  end: 'Geg.'
+  first_line: '^\s?(?P<desc>\S+\s\S*\s\S*)(\s+.+\s+(?P<sumprice>\S?\d+.?[\.,].?\d+)\s+\S+|$)'
+  line: '^\s+(?P<qty>\S+)\s+\S+.+\d+.?[\.,].?\d+(.+(?P<sumprice>\S?\d+.?[\.,].?\d+).+|\s*$)'
+keywords:
+- 'DE812706034'
+options:
+  currency: EUR
+  decimal_separator: ","

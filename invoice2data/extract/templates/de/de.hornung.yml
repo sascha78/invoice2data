@@ -1,0 +1,20 @@
+issuer: Hornung Baustoffe GmbH & Co. KG
+fields:
+  amount: \d+[\.,]\d+\s+\d+[\.,]\d+.\s+\d+[\.,]\d+\s+\d+[\.,]\d+\s+(\d+[\.,]\d+)
+  amount_untaxed: (\d+[\.,]\d+)\s+\d+[\.,]\d+.\s+\d+[\.,]\d+\s+\d+[\.,]\d+\s+\d+[\.,]\d+
+  date: vom\s+(\d+\.\d+\.\d{4})
+  invoice_number: kauf.+Nr.+(\d{8,})
+lines:
+  start: 'Pos'
+  end: 'MwSt'
+  first_line: ',0\s+(?P<desc>\w+\s*\w*)\s+'
+  line: '.+\s{5,}(?P<artnr>[^\s]+)\s{5,}(?P<qty>\d+)\s\w{,3}\s+\d+[\.,]\d+\s+(?P<sumprice>\d+[\.,]\d+)'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- DE143503212
+- Helmho
+options:
+  currency: EUR
+  decimal_separator: ","

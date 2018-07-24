@@ -1,0 +1,21 @@
+issuer: 1&1 Internet SE
+fields:
+  amount: Zu.zahlender.Betrag\s+(\d+[\.,]\d+)
+  amount_untaxed: Zwischensumme..Netto.\s+(\d+[\.,]\d+)
+  date: Rechnungsdatum.\s+(\d+\.\d+\.\d{4})
+  customer_no: Kundennummer.\s+(.\d+)
+  contract_no: Vertragsnummer.\s+(.\d+)
+  invoice_number: Rechnungsnummer.\s+(\d{5,})
+lines:
+  start: 'Die Leistungen im.+'
+  end: 'Zwischensumme .Netto.'
+  #line: '^\d\s\s+(?P<desc>.+?)\s\s+'
+  first_line: '^\d\s\s+(?P<desc>.+?)\s\s+(?P<tarif>.+?)\s\s+((?P<usage>.+?)|\s)\s\s+(?P<sumprice>.?\d+[\.,]\d+)'
+  line: '^\s+(?P<text>.+?)$'
+  types:
+      sumprice: float
+keywords:
+- 'Ihre Rechnung (1&1 Buchhaltung)'
+options:
+  currency: EUR
+  decimal_separator: ","

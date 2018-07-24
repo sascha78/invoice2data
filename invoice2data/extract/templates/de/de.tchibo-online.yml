@@ -1,0 +1,18 @@
+issuer: Tchibo GmbH
+fields:
+  amount: \d+[\.,]\d+\s+\d+[\.,]\d+.\s+\d+[\.,]\d+.+\s+(\d+[\.,]\d+)
+  amount_untaxed: (\d+[\.,]\d+)\s+\d+[\.,]\d+.\s+\d+[\.,]\d+.+\s+\d+[\.,]\d+
+  date: \s+(\d+\.\d+\.\d{4})
+  invoice_number: (\d{10,})\s+\d+\s+\d+\.\d+\.\d{4}
+lines:
+  start: 'Bestell'
+  end: 'Gesamt exkl'
+  line: '.+\s\s+(?P<artnr>\S{6,})\s\s+(?P<qty>\d\d?)\s\s+(?P<desc>.+?)\s\s+.+\d+[\.,]\d+.+\s\s+(?P<sumprice>\d+[\.,]\d+)$'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- "DE 811164447"
+options:
+  currency: EUR
+  decimal_separator: ","

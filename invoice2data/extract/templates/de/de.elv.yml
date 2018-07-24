@@ -1,0 +1,18 @@
+issuer: ELV Elektronik AG
+fields:
+  amount: betrag\s+(\d+[\.,]\d+)
+  amount_tax: wSt.+\((\d+[\.,]\d+)\s+
+  date: \d{5,}\s+(\d+\.\d+\.\d{4})
+  invoice_number: nung Nr\D+(\d{5,})
+lines:
+  start: 'Menge'
+  end: 'Warenwert'
+  line: '(?P<artnr>\S+?)\s\s+(?P<desc>.+?)\s\s+\d+\s\s+(?P<qty>\d+)\s\s+(?P<sumprice>\d+[\.,]\d+)'
+  types:
+      qty: float
+      sumprice: float
+keywords:
+- "DE 117263279"
+options:
+  currency: EUR
+  decimal_separator: ","
